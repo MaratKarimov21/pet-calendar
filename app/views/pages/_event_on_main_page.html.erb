@@ -1,5 +1,5 @@
-<% cardDate = Date.new(date.year, date.month, day + 1) %>
-<% cardEvent = user.events.find_by_date(cardDate) %>
+<% cardDate = Date.new(@date.year, @date.month, day + 1) %>
+<% cardEvent = @user.events.find_by_date(cardDate) %>
 
 <% color = "#C0C0C0" %>
 <% color = "#8FBC8F" if cardEvent %>
@@ -11,7 +11,7 @@
                         background:<%= color %>">
   <div class="card-body">
     <h5 class="card-title"><%= day + 1 %></h5>
-    <h6 class="card-subtitle mb-2 text-muted"><%= date.strftime("%B") %></h6>
+    <h6 class="card-subtitle mb-2 text-muted"><%= @date.strftime("%B") %></h6>
     
     <% if cardEvent %>
       <p class="card-text"><%= "есть событие" %></p>

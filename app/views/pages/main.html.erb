@@ -1,17 +1,16 @@
-<% userDate = @date %>
 
 <div style="text-align: center; ">
   <span class="btn btn-primary"
         style="display:inline-block">
-          <%= link_to "prev","/main/" + (userDate.year - 1).to_s + "/" + userDate.month.to_s,
+          <%= link_to "prev", root_path(year: @date.last_year.year.to_s, month: @date.month.to_s),
           {style: "text-decoration: none; color: white"} %>
   </span>
 
-  <h1 style="display:inline-block; margin-left: 5rem; margin-right: 5rem">    <%= userDate.year %>    </h1>
+  <h1 style="display:inline-block; margin-left: 5rem; margin-right: 5rem"> <%= @date.year %> </h1>
 
   <span class="btn btn-primary" 
         style="display:inline-block">
-        <%= link_to "next","/main/" + (userDate.year + 1).to_s + "/" + userDate.month.to_s,
+        <%= link_to "next", root_path(year: @date.next_year.year.to_s, month: @date.month.to_s),
         {style: "text-decoration: none; color: white"} %>
   </span>
 </div>
@@ -19,15 +18,15 @@
 <div style="text-align: center">
   <span class="btn btn-primary" 
         style="display:inline-block">
-        <%= link_to "prev", "/main/" + userDate.year.to_s + "/" + (userDate.month - 1).to_s,
+        <%= link_to "prev", root_path(year: @date.year.to_s, month: @date.last_month.month.to_s),
         {style: "text-decoration: none; color: white"} %>
   </span>
 
-  <h2 style="display:inline-block; margin-left: 5rem; margin-right: 5rem">    <%= userDate.strftime("%B") %>    </h2>
+  <h2 style="display:inline-block; margin-left: 5rem; margin-right: 5rem"> <%= @date.strftime("%B") %> </h2>
 
   <span class="btn btn-primary" 
         style="display:inline-block">
-        <%= link_to "next","/main/" + userDate.year.to_s + "/" + (userDate.month + 1).to_s,
+        <%= link_to "next", root_path(year: @date.year.to_s, month: @date.next_month.month.to_s),        
         {style: "text-decoration: none; color: white"} %>
   </span>
 </div>
@@ -35,8 +34,8 @@
 
 <div style="display: flex; justify-content: center">
   <div style="width: 990px">
-    <% (Time.days_in_month(userDate.month, userDate.year)).times do |day|%>
-      <%= render "./partials/eventCard", day: day, user: @user, date: userDate%>
+    <% (Time.days_in_month(@date.month, @date.year)).times do |day|%>
+      <%= render "event_on_main_page", day: day%>
     <%end%>
   </div>
 </div>

@@ -2,56 +2,62 @@
 
 class EventsController < ApplicationController
   before_action :authenticate_user!
+   
+  expose :events, :filtered_events
+  expose :event , scope: -> { current_user.events }
 
   def index
-    @events = current_user.events.all
+    #@events = current_user.events.all
   end
 
-  def showAll
-    @events = current_user.events.all
-    @date = params[:date]
-  end
+  # def showAll
+  #   #@events = current_user.events.all
+  #   @date = params[:date]
+  # end
 
   def show
-    @event = current_user.events.find(params[:id])
   end
 
-  def new
-    @event = current_user.events.new
-    @date = params[:date]
+  def new    
   end
 
   def create
-    @event = current_user.events.create(event_params)
-    if @event.save
-      redirect_to @event
+    if event.save
+      redirect_to event
     else
       render :new, status: :unprocessable_entity
     end
   end
 
   def edit
-    @event = current_user.events.find(params[:id])
   end
 
   def update
-    @event = current_user.events.find(params[:id])
-
-    if @event.update(event_params)
-      redirect_to @event
+    if event.update(event_params)
+      redirect_to event
     else
       render :new, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @event = current_user.events.find(params[:id])
-
-    @event.destroy
+    event.destroy
     redirect_to root_path
   end
 
   private
+
+  def filtered_events
+    FilteredEventsQuery.new(raw_relation, filter_params).all
+  end
+
+  def filter_params
+    params.permit(:date).to_h
+  end
+
+  def raw_relation
+    current_user.events
+  end
 
   def event_params
     params.require(:event).permit(:date, :body)
