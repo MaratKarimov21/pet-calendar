@@ -1,0 +1,18 @@
+div[style="text-align: center; "]
+  span.btn.btn-primary[style="display:inline-block"]
+    = link_to "prev", root_path(year: @date.last_year.year.to_s, month: @date.month.to_s),{style: "text-decoration: none; color: white"}
+  h1[style="display:inline-block; margin-left: 5rem; margin-right: 5rem"]
+    = @date.year
+  span.btn.btn-primary[style="display:inline-block"]
+    = link_to "next", root_path(year: @date.next_year.year.to_s, month: @date.month.to_s),{style: "text-decoration: none; color: white"}
+div[style="text-align: center"]
+  span.btn.btn-primary[style="display:inline-block"]
+    = link_to "prev", root_path(year: @date.year.to_s, month: @date.last_month.month.to_s),{style: "text-decoration: none; color: white"}
+  h2[style="display:inline-block; margin-left: 5rem; margin-right: 5rem"]
+    = @date.strftime("%B")
+  span.btn.btn-primary[style="display:inline-block"]
+    = link_to "next", root_path(year: @date.year.to_s, month: @date.next_month.month.to_s),        {style: "text-decoration: none; color: white"}
+div[style="display: flex; justify-content: center"]
+  div[style="width: 990px"]
+    - (Time.days_in_month(@date.month, @date.year)).times do |day|
+      = render "event_on_main_page", day: day

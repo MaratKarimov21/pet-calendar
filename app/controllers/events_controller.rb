@@ -7,13 +7,7 @@ class EventsController < ApplicationController
   expose :event , scope: -> { current_user.events }
 
   def index
-    #@events = current_user.events.all
   end
-
-  # def showAll
-  #   #@events = current_user.events.all
-  #   @date = params[:date]
-  # end
 
   def show
   end
@@ -22,22 +16,16 @@ class EventsController < ApplicationController
   end
 
   def create
-    if event.save
-      redirect_to event
-    else
-      render :new, status: :unprocessable_entity
-    end
+    event.save
+    respond_with event
   end
 
   def edit
   end
 
   def update
-    if event.update(event_params)
-      redirect_to event
-    else
-      render :new, status: :unprocessable_entity
-    end
+    event.update(event_params)
+    respond_with event
   end
 
   def destroy
@@ -52,7 +40,7 @@ class EventsController < ApplicationController
   end
 
   def filter_params
-    params.permit(:date).to_h
+    params.permit(:date, :from, :to).to_h
   end
 
   def raw_relation

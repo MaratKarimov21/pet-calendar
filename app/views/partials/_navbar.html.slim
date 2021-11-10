@@ -1,0 +1,17 @@
+.d-flex.flex-column.flex-md-row.align-items-center.pb-3.mb-4.border-bottom
+  a.d-flex.align-items-center.text-dark.text-decoration-none[href="/"]
+    span.fs-4
+      | CalendarApp
+  nav.d-inline-flex.mt-2.mt-md-0.ms-md-auto
+    - if user_signed_in?
+      span.me-3.py-2.text-dark.text-decoration-none
+        = link_to 'Новое событие', new_event_path
+      span.me-3.py-2.text-dark.text-decoration-none
+        = link_to 'Мои события', events_path
+      span.me-3.py-2.text-dark.text-decoration-none
+        = link_to 'Выйти', destroy_user_session_path, :method => :delete
+    - else
+      span.me-3.py-2.text-dark.text-decoration-none
+        = link_to 'Войти', new_user_session_path
+      span.me-3.py-2.text-dark.text-decoration-none
+        = link_to 'Зарегистрироваться', new_user_registration_path

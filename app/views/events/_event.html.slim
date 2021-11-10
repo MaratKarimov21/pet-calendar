@@ -1,0 +1,10 @@
+.card[style="margin-top: 10px"]
+  .card-header
+    = event.date.strftime('%d %b %Y')
+  .card-body
+    h5.card-title
+      | Описание события:
+    p.card-text
+      = event.body
+    span.btn.btn-primary
+      = link_to 'Открыть', event, {style: "text-decoration: none; color: white"}

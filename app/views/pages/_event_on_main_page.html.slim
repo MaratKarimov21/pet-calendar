@@ -1,0 +1,22 @@
+- cardDate = Date.new(@date.year, @date.month, day + 1)
+- cardEvent = @user.events.find_by_date(cardDate)
+- color = "#C0C0C0"
+- color = "#8FBC8F" if cardEvent
+
+div.card[style="width: 16rem; heght: 16rem; margin-top: 5px; margin-left: 5px; display:inline-block; background:#{color}"]
+  div.card-body
+    h5.card-title
+      = day + 1
+    h6.card-subtitle.mb-2.text-muted
+      = @date.strftime("%B")
+    - if cardEvent
+      p.card-text
+        = "есть событие"
+      span.me-3.py-2.text-dark.text-decoration-none
+        = link_to 'Открыть', '/events/date/' + cardEvent.date.to_s
+    - else
+      p.card-text
+        = "нет событий"
+    span.me-3.py-2.text-dark.text-decoration-none
+      = link_to 'Новое', '/events/new/' + cardDate.to_s
+  
