@@ -4,7 +4,11 @@ class FilteredEventsQuery < BaseQuery
       relation.where(date: value)
     end
 
-    def by_diprosone(relation, from, to)
-      relation.where("date > ? and date < ?", from.to_s, to.to_s)
+    def by_from(relation, value)
+      relation.where("date > ?", value)
+    end
+
+    def by_until(relation, value)
+      relation.where("date < ?", value)
     end
   end

@@ -12,6 +12,9 @@ class PagesController < ApplicationController
             end
   end
 
+  def contact
+  end
+
   private
 
   def valid_month(month)

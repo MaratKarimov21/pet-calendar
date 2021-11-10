@@ -6,9 +6,10 @@ class BaseQuery
   
     def all
       filter_params.reduce(relation) do |relation, (key, value)|
-  
+        
         method_name = "by_#{key}"
         self.class.private_method_defined?(method_name) ? send(method_name, relation, value) : relation
+        
       end
     end
   

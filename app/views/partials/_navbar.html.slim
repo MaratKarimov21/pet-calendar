@@ -8,6 +8,8 @@
         = link_to 'Новое событие', new_event_path
       span.me-3.py-2.text-dark.text-decoration-none
         = link_to 'Мои события', events_path
+        span.me-3.py-2.text-dark.text-decoration-none
+        = link_to 'Контакты', new_contacts_path
       span.me-3.py-2.text-dark.text-decoration-none
         = link_to 'Выйти', destroy_user_session_path, :method => :delete
     - else

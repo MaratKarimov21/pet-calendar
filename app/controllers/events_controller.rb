@@ -40,7 +40,7 @@ class EventsController < ApplicationController
   end
 
   def filter_params
-    params.permit(:date, :from, :to).to_h
+    params.permit(:date, :from, :until).to_h
   end
 
   def raw_relation

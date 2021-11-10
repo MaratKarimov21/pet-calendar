@@ -15,4 +15,4 @@ div[style="text-align: center"]
 div[style="display: flex; justify-content: center"]
   div[style="width: 990px"]
     - (Time.days_in_month(@date.month, @date.year)).times do |day|
-      = render "event_on_main_page", day: day
+      = render "event_on_main_page", day: (day + 1)

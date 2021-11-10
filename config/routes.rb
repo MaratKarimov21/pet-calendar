@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   root 'pages#main'
-  #get '/main/:year/:month', to: 'pages#main'
   
+  resource :contacts, only: %i[new create]
   resources :events
 end
