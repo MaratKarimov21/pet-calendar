@@ -1,0 +1,10 @@
+div.card.inactive
+  div.card-body
+    h5.card-title
+      = current_date.day
+    h6.card-subtitle.mb-2.text-muted
+      = current_date.strftime("%B")
+      p.card-text
+        = "нет событий"
+    span.me-3.py-2.text-dark.text-decoration-none
+      = link_to 'Новое', new_event_path(date: current_date.to_s) 
