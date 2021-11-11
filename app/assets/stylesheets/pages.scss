@@ -1,3 +1,31 @@
 // Place all the styles related to the Pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.active {
+    width: 16rem; 
+    height: 10rem; 
+    margin-top: 5px; 
+    margin-left: 5px; 
+    display: inline-block; 
+    background: #8FBC8F
+}
+
+.inactive {
+    width: 16rem; 
+    height: 10rem; 
+    margin-top: 5px; 
+    margin-left: 5px; 
+    display: inline-block; 
+    background: #C0C0C0
+
+}
+
+.btn.btn-primary {
+    display:inline-block
+}
+
+.link {
+    text-decoration: none; 
+    color: white
+}

@@ -4,11 +4,11 @@ class FilteredEventsQuery < BaseQuery
       relation.where(date: value)
     end
 
-    def by_from(relation, value)
-      relation.where("date > ?", value)
+    def by_date_from(relation, value)
+      relation.where("date >= ?", value)
     end
 
-    def by_until(relation, value)
-      relation.where("date < ?", value)
+    def by_date_until(relation, value)
+      relation.where("date <= ?", value)
     end
   end

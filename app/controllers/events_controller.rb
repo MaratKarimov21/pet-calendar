@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   before_action :authenticate_user!
    
   expose :events, :filtered_events
-  expose :event , scope: -> { current_user.events }
+  expose :event , scope: -> { raw_relation }
 
   def index
   end
@@ -40,7 +40,7 @@ class EventsController < ApplicationController
   end
 
   def filter_params
-    params.permit(:date, :from, :until).to_h
+    params.permit(:date, :date_from, :date_until).to_h
   end
 
   def raw_relation
