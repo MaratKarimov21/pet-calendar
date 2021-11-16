@@ -34,6 +34,8 @@ gem 'bootstrap-sass'
 gem 'decent_exposure', '~> 3.0'
 gem "responders"
 gem 'slim'
+gem 'draper'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

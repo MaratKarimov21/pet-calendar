@@ -3,8 +3,8 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
    
-  expose :events, :filtered_events
-  expose :event , scope: -> { raw_relation }
+  expose :events, -> { filtered_events.decorate }
+  expose :event, scope: -> { raw_relation }, decorate: ->(event){ EventDecorator.new(event) }
 
   def index
   end
