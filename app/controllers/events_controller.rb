@@ -7,6 +7,7 @@ class EventsController < ApplicationController
   expose :event, scope: -> { raw_relation }, decorate: ->(event){ EventDecorator.new(event) }
 
   def index
+    @public_events = GetPublicEvents.call(filter_params).events
   end
 
   def show

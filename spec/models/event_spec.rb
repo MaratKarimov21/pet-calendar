@@ -1,9 +1,8 @@
 require "rails_helper"
 
 describe Event do
-    let(:event) { described_class.new(date: date, body: body) }
-    let(:date) { Date.today }
-    let(:body) { "body" }
+    let(:user) { build :user }
+    let(:event) { build(:user, user_id: user.id) }
 
     describe "#valid?" do
         it { expect(event.valid?).to be_truthy }
