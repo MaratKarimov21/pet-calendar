@@ -1,14 +1,13 @@
 require "rails_helper"
 
 describe Event do
-    let(:user) { build :user }
-    let(:event) { build(:user, user_id: user.id) }
+    let(:event) { create :event }
 
     describe "#valid?" do
         it { expect(event.valid?).to be_truthy }
 
         context "when date field is empty" do
-            let(:date) { nil }
+            let(:event) { date: nil }
             let(:expected_errors) { "Date can't be blank" }
 
             it "validates event" do
@@ -18,7 +17,7 @@ describe Event do
         end
 
         context "when body field is empty" do
-            let(:body) { nil }
+            let(:event) { body: nil }
             let(:expected_errors) { "Body can't be blank" }
 
             it "validates event" do
