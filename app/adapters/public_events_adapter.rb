@@ -8,9 +8,8 @@ class PublicEventsAdapter
   attr_reader :result, :error
 
   def search_by_date(date)
+    response = self.class.get("/public-api/v1.2/events/", options(date))
     
-    response = self.class.get("/public-api/v1.2/events/", options(fetch_date(date)))
-    puts response
     if response.success?
       @result = response.parsed_response
     else
@@ -24,8 +23,8 @@ class PublicEventsAdapter
     {
       query: {
         location: 'kzn',
-        actual_since: date,
-        actual_until: date,
+        actual_since: fetch_date(date),
+        actual_until: fetch_date(date),
         is_free: 1,
         fields: 'title'
       }

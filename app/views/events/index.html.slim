@@ -1,7 +1,8 @@
 = "Здесь пока нет событий" if events.length == 0
 - events.each do |event|
   = render "event", event: event
-h1 
- | Также сегодня:
-- @public_events.each do |title|
-  = render "public_event", title: title
+- if @public_events.present?
+  h1 
+  | Также сегодня:
+  - @public_events.each do |title|
+    = render "public_event", title: title
