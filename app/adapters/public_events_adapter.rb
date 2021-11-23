@@ -3,35 +3,37 @@ require 'httparty'
 class PublicEventsAdapter
   include HTTParty
 
-  base_uri 'https://kudago.com'
+  base_uri "https://kudago.com"
   
   attr_reader :result, :error
 
   def search_by_date(date)
-    response = self.class.get("/public-api/v1.2/events/", options(date))
+    response = self.class.get("/public-api/v1.2/events/", search_options(date))
     
-    if response.success?
-      @result = response.parsed_response
+    result = if response.success?
+      response.parsed_response["results"].map { |event_hash| event_hash["title"] }
     else
-      @error = response.parsed_response.dig("message")
+      response.parsed_response.dig("message")
     end
 
-    self
+    result
   end
 
-  def options(date)
+  private
+
+  def search_options(date)
     {
       query: {
-        location: 'kzn',
-        actual_since: fetch_date(date),
-        actual_until: fetch_date(date),
+        location: "kzn",
+        actual_since: formatted_datetime(date),
+        actual_until: formatted_datetime(date),
         is_free: 1,
-        fields: 'title'
+        fields: "title"
       }
     }
   end
 
-  def fetch_date(date)
-    fetched_date = DateTime.parse(date).to_s
+  def formatted_datetime(date)
+    DateTime.parse(date).to_s
   end
 end

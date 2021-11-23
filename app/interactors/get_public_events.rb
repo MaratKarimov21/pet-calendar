@@ -4,7 +4,7 @@ class GetPublicEvents
   def call
     context.fail!(error: fetch_events.error) if fetch_events.error.present?
 
-    context.events = fetch_events.result['results'].map { |event_hash| event_hash['title'] }
+    context.events = fetch_events.result
   end
 
   def fetch_events
