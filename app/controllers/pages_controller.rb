@@ -8,6 +8,9 @@ class PagesController < ApplicationController
     @grouped_events = filtered_events.group_by { |event| event.date.day.to_s }
   end
 
+  def profile
+  end
+
   private
 
   def parsed_params

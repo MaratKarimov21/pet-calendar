@@ -4,28 +4,14 @@ describe PublicEventsAdapter do
   describe "#search_by_date" do
     subject(:search_by_date) { adapter.search_by_date(date) }
 
+    let(:adapter) { described_class.new }
     let(:date) { "2021-01-01" }
-
-
     let(:data) { { title: "test"  } }
-    let(:url) { "https://kudago.com/public-api/v1.2/events/" }
+    let(:url) { "https://kudago.com/public-api/v1.2/events/?location=kzn&actual_since=2021-01-01T00:00:00+00:00&actual_until=2021-01-01T00:00:00+00:00&is_free=1&cfields=title" }
 
-    let(:search_options) do
-      {
-        query: {
-          location: 'kzn',
-          actual_since: fetch_date(date),
-          actual_until: fetch_date(date),
-          is_free: 1,
-          fields: 'title'
-        }
-      }
-    end
 
     before do
-      # stub_request(:get, url).to_return(body: data.to_json, headers: { "Content-Type" => "application/json" })
-
-      allow(HTTParty).to receive(:get).with("/public-api/v1.2/events/", search_options)
+      stub_request(:get, url).to_return(body: data.to_json, headers: { "Content-Type" => "application/json" })
     end
 
     it "fetches events info via API" do

@@ -2,9 +2,9 @@ class GetPublicEvents
   include Interactor
 
   def call
-    context.fail!(error: fetch_events.error) if fetch_events.error.present?
+    #context.fail!(error: fetch_events.error) if fetch_events.error.present?
 
-    context.events = fetch_events.result
+    context.events = fetch_events
   end
 
   def fetch_events

@@ -5,4 +5,7 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :validatable
+
+  validates :firstname, presence: true
+  validates :lastname, presence: true
 end

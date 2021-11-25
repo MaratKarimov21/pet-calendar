@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   root 'pages#main'
   
+  get 'pages/profile', to: 'pages#profile', as: 'profile'
+
   resource :contacts, only: %i[new create]
   resources :events
 end

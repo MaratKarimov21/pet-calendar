@@ -5,10 +5,12 @@
   nav.d-inline-flex.mt-2.mt-md-0.ms-md-auto
     - if user_signed_in?
       span.me-3.py-2.text-dark.text-decoration-none
+        = link_to 'Мой профиль', profile_path
+      span.me-3.py-2.text-dark.text-decoration-none
         = link_to 'Новое событие', new_event_path
       span.me-3.py-2.text-dark.text-decoration-none
         = link_to 'Мои события', events_path
-        span.me-3.py-2.text-dark.text-decoration-none
+      span.me-3.py-2.text-dark.text-decoration-none
         = link_to 'Контакты', new_contacts_path
       span.me-3.py-2.text-dark.text-decoration-none
         = link_to 'Выйти', destroy_user_session_path, :method => :delete
