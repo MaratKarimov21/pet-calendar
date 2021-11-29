@@ -1,3 +1,12 @@
 h1 
   | Ваш профиль
-= current_user.email
+h3 
+  = current_user.email
+  br
+  = current_user.firstname
+  br
+  = current_user.lastname
+  br
+span.btn.btn-primary
+  = link_to "Редактировать профиль", edit_user_registration_path, {style: "text-decoration: none; color: white"}
+

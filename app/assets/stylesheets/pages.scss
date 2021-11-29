@@ -22,10 +22,23 @@
 }
 
 .btn.btn-primary {
-    display:inline-block
+    display:inline-block;
+    text-decoration: none; 
+    color: white
 }
 
-.link {
+.btn.btn-secondary {
+    display:inline-block;
+    text-decoration: none; 
+    color: white
+}
+
+.nolink {
+    text-decoration: none; 
+    color: white
+}
+
+link {
     text-decoration: none; 
     color: white
 }

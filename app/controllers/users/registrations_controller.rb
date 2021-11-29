@@ -12,6 +12,10 @@ module Users
       end
     end
 
+    def sign_up_params
+      devise_parameter_sanitizer.sanitize(:sign_up)
+    end
+
     def passwords_blank?(params)
       params[:password].blank? && params[:password_confirmation].blank?
     end
